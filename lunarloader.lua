@@ -2645,7 +2645,7 @@ local games = {
 					error(res) 
 				end
 				if path:find('.lua') then 
-					res = '--This watermark is used to delete the file if its cached, remove it to make the file persist after vape updates.\n'..res 
+					res = '--This watermark is used to delete the file if its cached, remove it to make the file persist after lunar updates.\n'..res 
 				end
 				writefile(path, res)
 			end
@@ -11655,7 +11655,7 @@ run(function()
 			self.said[plr.Name] = true
 			notif('Lunar', plr.Name..' is using lunar!', 60)
 			self.customtags[plr.Name] = {{
-				text = 'VAPE USER',
+				text = 'LUNAR USER',
 				color = Color3.new(1, 1, 0)
 			}}
 			local newent = entitylib.getEntity(plr)
@@ -21697,7 +21697,7 @@ local guis = {
 			settingsversion.Size = UDim2.new(1, 0, 0, 16)
 			settingsversion.Position = UDim2.new(0, 0, 1, -16)
 			settingsversion.BackgroundTransparency = 1
-			settingsversion.Text = 'Vape '..mainapi.Version..' '..(
+			settingsversion.Text = 'Lunar '..mainapi.Version..' '..(
 				isfile('newlunar/profiles/commit.txt') and readfile('newlunar/profiles/commit.txt'):sub(1, 6) or ''
 			)..' '
 			settingsversion.TextColor3 = color.Dark(uipallet.Text, 0.43)
@@ -25051,14 +25051,14 @@ local guis = {
 					loadstring(game:HttpGet('https://raw.githubusercontent.com/xylex1/LunarClient/'..readfile('newlunar/profiles/commit.txt')..'/loader.lua', true))()
 				end
 			end,
-			Tooltip = 'This will set your profile to the default settings of Vape'
+			Tooltip = 'This will set your profile to the default settings of Lunar'
 		})
 		general:CreateButton({
 			Name = 'Self destruct',
 			Function = function()
 				mainapi:Uninject()
 			end,
-			Tooltip = 'Removes vape from the current game'
+			Tooltip = 'Removes Lunar from the current game'
 		})
 		general:CreateButton({
 			Name = 'Reinject',
@@ -25070,7 +25070,7 @@ local guis = {
 					loadstring(game:HttpGet('https://raw.githubusercontent.com/xylex1/LunarClient/'..readfile('newlunar/profiles/commit.txt')..'/loader.lua', true))()
 				end
 			end,
-			Tooltip = 'Reloads vape for debugging purposes'
+			Tooltip = 'Reloads Lunar for debugging purposes'
 		})
 
 --[[
@@ -25367,7 +25367,7 @@ local guis = {
 		})
 		local textguiwatermark = textgui:CreateToggle({
 			Name = 'Watermark',
-			Tooltip = 'Renders a vape watermark',
+			Tooltip = 'Renders a lunar watermark',
 			Function = function()
 				mainapi:UpdateTextGUI()
 			end
@@ -26187,7 +26187,7 @@ local function downloadFile(path, func)
 			error(res)
 		end
 		if path:find('.lua') then
-			res = '--This watermark is used to delete the file if its cached, remove it to make the file persist after vape updates.\n'..res
+			res = '--This watermark is used to delete the file if its cached, remove it to make the file persist after lunar updates.\n'..res
 		end
 		writefile(path, res)
 	end
