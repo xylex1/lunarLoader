@@ -19196,7 +19196,7 @@ local guis = {
 		}
 
 		local getcustomassets = {
-			['newlunar/assets/new/add.png'] = 'rbxassetid://14368300605',
+			--['newlunar/assets/new/add.png'] = 'rbxassetid://14368300605',
 			['newlunar/assets/new/alert.png'] = 'rbxassetid://14368301329',
 			['newlunar/assets/new/allowedicon.png'] = 'rbxassetid://14368302000',
 			['newlunar/assets/new/allowedtab.png'] = 'rbxassetid://14368302875',
@@ -19450,7 +19450,7 @@ local guis = {
 			if not isfile(path) then
 				createDownloader(path)
 				local suc, res = pcall(function()
-					return game:HttpGet('https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/'..readfile('newlunar/profiles/commit.txt')..'/'..select(1, path:gsub('newlunar/', '')), true)
+					return game:HttpGet('https://raw.githubusercontent.com/xylex1/LunarClient/'..readfile('newlunar/profiles/commit.txt')..'/'..select(1, path:gsub('newlunar/', '')), true)
 				end)
 				if not suc or res == '404: Not Found' then
 					error(res)
