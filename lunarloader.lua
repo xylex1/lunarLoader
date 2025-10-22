@@ -19214,7 +19214,6 @@ local guis = {
 			['newlunar/assets/new/colorpreview.png'] = 'rbxassetid://14368311578',
 			['newlunar/assets/new/combaticon.png'] = 'rbxassetid://14368312652',
 			['newlunar/assets/new/customsettings.png'] = 'rbxassetid://14403726449',
-			['newlunar/assets/new/discord.png'] = '',
 			['newlunar/assets/new/dots.png'] = 'rbxassetid://14368314459',
 			['newlunar/assets/new/edit.png'] = 'rbxassetid://14368315443',
 			['newlunar/assets/new/expandicon.png'] = 'rbxassetid://14368353032',
@@ -21658,13 +21657,6 @@ local guis = {
 			settingsicon.Image = 'rbxassetid://14368318994'
 			settingsicon.ImageColor3 = color.Light(uipallet.Main, 0.37)
 			settingsicon.Parent = settingsbutton
-			local discordbutton = Instance.new('ImageButton')
-			discordbutton.Size = UDim2.fromOffset(16, 16)
-			discordbutton.Position = UDim2.new(1, -56, 0, 11)
-			discordbutton.BackgroundTransparency = 1
-			discordbutton.Image = getcustomasset('newlunar/assets/new/discord.png')
-			discordbutton.Parent = window
-			addTooltip(discordbutton, 'Join discord')
 			local settingspane = Instance.new('TextButton')
 			settingspane.Size = UDim2.fromScale(1, 1)
 			settingspane.BackgroundColor3 = color.Dark(uipallet.Main, 0.02)
@@ -22700,37 +22692,6 @@ local guis = {
 			end)
 			close.MouseButton1Click:Connect(function()
 				settingspane.Visible = false
-			end)
-			discordbutton.MouseButton1Click:Connect(function()
-				task.spawn(function()
-					local body = httpService:JSONEncode({
-						nonce = httpService:GenerateGUID(false),
-						args = {
-							invite = {code = '5gJqhQmrdS'},
-							code = '5gJqhQmrdS'
-						},
-						cmd = 'INVITE_BROWSER'
-					})
-
-					for i = 1, 14 do
-						task.spawn(function()
-							request({
-								Method = 'POST',
-								Url = 'http://127.0.0.1:64'..(53 + i)..'/rpc?v=1',
-								Headers = {
-									['Content-Type'] = 'application/json',
-									Origin = 'https://discord.com'
-								},
-								Body = body
-							})
-						end)
-					end
-				end)
-
-				task.spawn(function()
-					tooltip.Text = 'Copied!'
-					setclipboard('https://discord.gg/5gJqhQmrdS')
-				end)
 			end)
 			settingsbutton.MouseEnter:Connect(function()
 				settingsicon.ImageColor3 = uipallet.Text
