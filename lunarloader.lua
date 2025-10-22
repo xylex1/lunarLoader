@@ -1,7 +1,7 @@
 -- Lunar Client Private (Bedwars)
 
 -- create commit
-writefile('newlunar/profiles/commit.txt', 'a1a647c8475611d0acfd2068bf8f6a0453ae7615')
+--writefile('newlunar/profiles/commit.txt', 'a1a647c8475611d0acfd2068bf8f6a0453ae7615')
 
 local libraries = {
 	drawing = function(...)
