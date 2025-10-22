@@ -5873,7 +5873,7 @@ local games = {
 			Value = Speed:CreateSlider({
 				Name = 'Speed',
 				Min = 1,
-				Max = 43,
+				Max = 23,
 				Default = 23,
 				Suffix = function(val)
 					return val == 1 and 'stud' or 'studs'
@@ -26221,11 +26221,10 @@ if not shared.VapeIndependent then
 				local fn = games[gameId]
 				games["Universal"]()
 				if fn then
-				--	fn()
+					fn()
 				else
 					print("not supported")
 				end
-				--loadstring(downloadFile('newlunar/games/'..game.PlaceId..'.lua'), tostring(game.PlaceId))(...)
 			end
 		end
 	end
