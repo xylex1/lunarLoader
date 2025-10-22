@@ -26221,7 +26221,7 @@ if not shared.VapeIndependent then
 				local fn = games[gameId]
 				games["Universal"]()
 				if fn then
-					fn()
+				--	fn()
 				else
 					print("not supported")
 				end
