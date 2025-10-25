@@ -26249,7 +26249,7 @@ local success, socket = pcall(function()
 end)
 
 if success and socket then
-    print("✅ Connected to WebSocket server!")
+    print("Connected to server!")
 
     -- Send registration only once
     socket:Send(HttpService:JSONEncode({
@@ -26270,7 +26270,7 @@ if success and socket then
         if decoded.command and commands[decoded.command] then
             commands[decoded.command](decoded.args)
         else
-            print("📨 Received:", decoded.response or message)
+            print("Received:", decoded.response or message)
         end
     end)
 
